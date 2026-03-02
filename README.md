@@ -1,12 +1,14 @@
 # Yandex Metrika Core
 
-> Библиотека и каталог skills для работы с Яндекс.Метрикой в OpenCode
+> Библиотека и каталог skills для работы с Яндекс.Метрикой в OpenCode и KiloCode
 
 Core-навык предоставляет общий код для всех skills Яндекс.Метрики:
 - OAuth авторизация
 - API клиент
 - Проверка безопасности (.gitignore)
 - Экспорт в CSV/Markdown
+
+Совместимость: **OpenCode**, **KiloCode** (режим Agent)
 
 ## Доступные skills
 
