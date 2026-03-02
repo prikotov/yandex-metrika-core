@@ -16,10 +16,11 @@
 
 ## Установка
 
+Skills совместимы с различными AI-агентами. Примеры ниже даны для OpenCode — для других инструментов смотрите их документацию по установке skills.
+
 ### 1. Установите core
 
 ```bash
-# .opencode/skills/ или .kilocode/skills/ — в зависимости от вашего инструмента
 git clone https://github.com/prikotov/yandex-metrika-core.git .opencode/skills/yandex-metrika-core
 ```
 
@@ -67,7 +68,7 @@ your-project/
 ├── metrika_config.json          # Общий конфиг (создаётся вручную в корне проекта)
 ├── yandex_token.json            # Создаётся автоматически при первом запуске
 ├── metrika_reports/             # Создаётся автоматически при запуске отчёта
-└── .opencode/skills/            # или .kilocode/skills/
+└── .opencode/skills/
     ├── yandex-metrika-core/     # Библиотека
     │   ├── MetrikaClient.php
     │   └── SKILL.md
