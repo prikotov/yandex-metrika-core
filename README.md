@@ -103,13 +103,14 @@ $client = new MetrikaClient(
 // Ваш код...
 ```
 
-### MetrikaClient API
+### Пример: MetrikaClient API
 
 ```php
-// Загрузка конфигурации
+require_once __DIR__ . '/../yandex-metrika-core/MetrikaClient.php';
+
+MetrikaClient::checkGitignore();
 $config = MetrikaClient::loadConfig();
 
-// Создание клиента
 $client = new MetrikaClient(
     $config['client_id'],
     $config['client_secret'],
@@ -119,11 +120,27 @@ $client = new MetrikaClient(
 // API запрос
 $data = $client->request([
     'ids' => $client->getCounterId(),
-    'metrics' => 'ym:s:visits',
+    'metrics' => 'ym:s:visits,ym:s:pageviews',
     'dimensions' => 'ym:s:lastSearchPhrase',
     'date1' => '2026-01-01',
-    'date2' => '2026-02-28'
+    'date2' => '2026-02-28',
+    'limit' => 100
 ]);
+
+// Преобразование в плоский массив
+$rows = [];
+foreach ($data['data'] as $item) {
+    $rows[] = [
+        'Фраза' => $item['dimensions'][0]['name'],
+        'Визиты' => $item['metrics'][0],
+        'Просмотры' => $item['metrics'][1]
+    ];
+}
+
+// Сохранение отчёта
+$reportDir = MetrikaClient::createReportDir();
+MetrikaClient::saveCsv($rows, "$reportDir/report.csv");
+MetrikaClient::saveMarkdown($rows, "$reportDir/report.md", 'Поисковые фразы', '2026-01-01', '2026-02-28');
 ```
 
 ## Требования
