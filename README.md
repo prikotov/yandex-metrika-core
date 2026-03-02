@@ -136,6 +136,7 @@ $client = new MetrikaClient(
 - PHP 7.4+
 - Расширение cURL
 
-> ---
-> Постановка задач, архитектура, ревью — **Dmitry Prikotov**\
-> Реализация — [OpenCode](https://opencode.ai) + GLM-5
+---
+
+Постановка задач, архитектура, ревью — [**Dmitry Prikotov**](https://prikotov.pro/)
+Реализация — [OpenCode](https://opencode.ai) + GLM-5
