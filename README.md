@@ -65,16 +65,14 @@ git clone https://github.com/prikotov/yandex-metrika-search.git .opencode/skills
 
 ```
 your-project/
-├── metrika_config.json          # Общий конфиг (в корне проекта)
-├── yandex_token.json            # Токен (автоматически)
-├── metrika_reports/             # Отчёты (автоматически)
+├── metrika_config.json          # Общий конфиг (создаётся вручную в корне проекта)
+├── yandex_token.json            # Создаётся автоматически при первом запуске
+├── metrika_reports/             # Создаётся автоматически при запуске отчёта
 └── .opencode/skills/
     ├── yandex-metrika-core/     # Библиотека
     │   ├── MetrikaClient.php
     │   └── SKILL.md
-    ├── yandex-metrika-search/   # Конкретные skills
-    ├── yandex-metrika-pages/
-    └── ...
+    └── yandex-metrika-search/   # Skill для поисковых фраз
 ```
 
 ## MetrikaClient API
