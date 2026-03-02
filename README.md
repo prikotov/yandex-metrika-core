@@ -103,7 +103,7 @@ $client = new MetrikaClient(
 // Ваш код...
 ```
 
-### Пример: MetrikaClient API
+### Пример использования MetrikaClient API
 
 Ниже — полный пример skill, который запрашивает поисковые фразы и сохраняет отчёт.
 
