@@ -12,10 +12,10 @@ Core-навык предоставляет общий код для всех ski
 
 | Skill | Описание | Репозиторий |
 |-------|----------|-------------|
-| yandex-metrika-search | Поисковые фразы с метриками | [github](https://github.com/USER/yandex-metrika-search) |
-| yandex-metrika-pages | Популярные страницы | [github](https://github.com/USER/yandex-metrika-pages) |
-| yandex-metrika-traffic | Источники трафика | [github](https://github.com/USER/yandex-metrika-traffic) |
-| yandex-metrika-tech | Браузеры и устройства | [github](https://github.com/USER/yandex-metrika-tech) |
+| yandex-metrika-search | Поисковые фразы с метриками | [github](https://github.com/prikotov/yandex-metrika-search) |
+| yandex-metrika-pages | Популярные страницы | [github](https://github.com/prikotov/yandex-metrika-pages) |
+| yandex-metrika-traffic | Источники трафика | [github](https://github.com/prikotov/yandex-metrika-traffic) |
+| yandex-metrika-tech | Браузеры и устройства | [github](https://github.com/prikotov/yandex-metrika-tech) |
 
 ## Установка
 
@@ -23,7 +23,7 @@ Core-навык предоставляет общий код для всех ski
 
 ```bash
 cd your-project
-git clone https://github.com/USER/yandex-metrika-core.git .opencode/skills/yandex-metrika-core
+git clone https://github.com/prikotov/yandex-metrika-core.git .opencode/skills/yandex-metrika-core
 ```
 
 ### 2. Создайте OAuth-приложение Яндекс
@@ -59,7 +59,7 @@ cp metrika_config.example.json ../../../metrika_config.json
 ### 5. Установите нужные skills
 
 ```bash
-git clone https://github.com/USER/yandex-metrika-search.git .opencode/skills/yandex-metrika-search
+git clone https://github.com/prikotov/yandex-metrika-search.git .opencode/skills/yandex-metrika-search
 ```
 
 ## Структура
