@@ -1,14 +1,12 @@
 # Yandex Metrika Core
 
-> Библиотека и каталог skills для работы с Яндекс.Метрикой в OpenCode и KiloCode
+> Библиотека и каталог skills для работы с Яндекс.Метрикой
 
 Core-навык предоставляет общий код для всех skills Яндекс.Метрики:
 - OAuth авторизация
 - API клиент
 - Проверка безопасности (.gitignore)
 - Экспорт в CSV/Markdown
-
-Совместимость: **OpenCode**, **KiloCode** (режим Agent)
 
 ## Доступные skills
 
@@ -18,18 +16,11 @@ Core-навык предоставляет общий код для всех ski
 
 ## Установка
 
-### OpenCode
+### 1. Установите core
 
 ```bash
-cd your-project
+# .opencode/skills/ или .kilocode/skills/ — в зависимости от вашего инструмента
 git clone https://github.com/prikotov/yandex-metrika-core.git .opencode/skills/yandex-metrika-core
-```
-
-### KiloCode
-
-```bash
-cd your-project
-git clone https://github.com/prikotov/yandex-metrika-core.git .kilocode/skills/yandex-metrika-core
 ```
 
 ### 2. Создайте OAuth-приложение Яндекс
@@ -51,11 +42,7 @@ git clone https://github.com/prikotov/yandex-metrika-core.git .kilocode/skills/y
 ### 4. Создайте конфигурацию
 
 ```bash
-# Для OpenCode
 cp .opencode/skills/yandex-metrika-core/metrika_config.example.json ./metrika_config.json
-
-# Для KiloCode
-cp .kilocode/skills/yandex-metrika-core/metrika_config.example.json ./metrika_config.json
 ```
 
 Заполните:
@@ -69,38 +56,18 @@ cp .kilocode/skills/yandex-metrika-core/metrika_config.example.json ./metrika_co
 
 ### 5. Установите нужные skills
 
-**OpenCode:**
 ```bash
 git clone https://github.com/prikotov/yandex-metrika-search.git .opencode/skills/yandex-metrika-search
 ```
 
-**KiloCode:**
-```bash
-git clone https://github.com/prikotov/yandex-metrika-search.git .kilocode/skills/yandex-metrika-search
-```
-
-## Структура (OpenCode)
+## Структура
 
 ```
 your-project/
 ├── metrika_config.json          # Общий конфиг (создаётся вручную в корне проекта)
 ├── yandex_token.json            # Создаётся автоматически при первом запуске
 ├── metrika_reports/             # Создаётся автоматически при запуске отчёта
-└── .opencode/skills/
-    ├── yandex-metrika-core/     # Библиотека
-    │   ├── MetrikaClient.php
-    │   └── SKILL.md
-    └── yandex-metrika-search/   # Skill для поисковых фраз
-```
-
-## Структура (KiloCode)
-
-```
-your-project/
-├── metrika_config.json          # Общий конфиг (создаётся вручную в корне проекта)
-├── yandex_token.json            # Создаётся автоматически при первом запуске
-├── metrika_reports/             # Создаётся автоматически при запуске отчёта
-└── .kilocode/skills/
+└── .opencode/skills/            # или .kilocode/skills/
     ├── yandex-metrika-core/     # Библиотека
     │   ├── MetrikaClient.php
     │   └── SKILL.md
