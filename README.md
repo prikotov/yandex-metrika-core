@@ -13,9 +13,6 @@ Core-навык предоставляет общий код для всех ski
 | Skill | Описание | Репозиторий |
 |-------|----------|-------------|
 | yandex-metrika-search | Поисковые фразы с метриками | [github](https://github.com/prikotov/yandex-metrika-search) |
-| yandex-metrika-pages | Популярные страницы | [github](https://github.com/prikotov/yandex-metrika-pages) |
-| yandex-metrika-traffic | Источники трафика | [github](https://github.com/prikotov/yandex-metrika-traffic) |
-| yandex-metrika-tech | Браузеры и устройства | [github](https://github.com/prikotov/yandex-metrika-tech) |
 
 ## Установка
 
