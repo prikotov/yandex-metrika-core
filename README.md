@@ -31,7 +31,9 @@ git clone https://github.com/prikotov/yandex-metrika-core.git .opencode/skills/y
    - **Платформа**: Веб-сервисы
    - **Redirect URI**: `https://oauth.yandex.ru/verification_code`
    - **Доступы**: Яндекс.Метрика → Чтение
-3. Скопируйте **Id** и **Пароль**
+3. Скопируйте:
+   - **Id** → `client_id`
+   - **Пароль** → `client_secret`
 
 ### 3. Узнайте номер счётчика
 
