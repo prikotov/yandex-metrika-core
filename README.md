@@ -75,31 +75,6 @@ your-project/
     └── yandex-metrika-search/   # Skill для поисковых фраз
 ```
 
-## MetrikaClient API
-
-```php
-require_once '../yandex-metrika-core/MetrikaClient.php';
-
-// Загрузка конфигурации
-$config = MetrikaClient::loadConfig();
-
-// Создание клиента
-$client = new MetrikaClient(
-    $config['client_id'],
-    $config['client_secret'],
-    $config['counter_id']
-);
-
-// API запрос
-$data = $client->request([
-    'ids' => $client->getCounterId(),
-    'metrics' => 'ym:s:visits',
-    'dimensions' => 'ym:s:lastSearchPhrase',
-    'date1' => '2026-01-01',
-    'date2' => '2026-02-28'
-]);
-```
-
 ## Безопасность
 
 Все skills автоматически проверяют `.gitignore`:
@@ -126,6 +101,29 @@ $client = new MetrikaClient(
 );
 
 // Ваш код...
+```
+
+### MetrikaClient API
+
+```php
+// Загрузка конфигурации
+$config = MetrikaClient::loadConfig();
+
+// Создание клиента
+$client = new MetrikaClient(
+    $config['client_id'],
+    $config['client_secret'],
+    $config['counter_id']
+);
+
+// API запрос
+$data = $client->request([
+    'ids' => $client->getCounterId(),
+    'metrics' => 'ym:s:visits',
+    'dimensions' => 'ym:s:lastSearchPhrase',
+    'date1' => '2026-01-01',
+    'date2' => '2026-02-28'
+]);
 ```
 
 ## Требования
