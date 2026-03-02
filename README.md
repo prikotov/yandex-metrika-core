@@ -12,7 +12,7 @@
 
 | Skill | Описание | Репозиторий |
 |-------|----------|-------------|
-| yandex-metrika-search | Поисковые фразы с метриками | [github](https://github.com/prikotov/yandex-metrika-search) |
+| yandex-metrika-search | Поисковые фразы с метриками | [github.com/prikotov/yandex-metrika-search](https://github.com/prikotov/yandex-metrika-search) |
 
 ## Установка
 
