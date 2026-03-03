@@ -13,6 +13,9 @@
 | Skill | Описание | Репозиторий |
 |-------|----------|-------------|
 | yandex-metrika-search | Поисковые фразы с метриками | [github.com/prikotov/yandex-metrika-search](https://github.com/prikotov/yandex-metrika-search) |
+| yandex-metrika-visitors | Анализ посетителей по срезам | [github.com/prikotov/yandex-metrika-visitors](https://github.com/prikotov/yandex-metrika-visitors) |
+| yandex-metrika-pages | Статистика по страницам | [github.com/prikotov/yandex-metrika-pages](https://github.com/prikotov/yandex-metrika-pages) |
+| yandex-metrika-traffic | Источники трафика | [github.com/prikotov/yandex-metrika-traffic](https://github.com/prikotov/yandex-metrika-traffic) |
 
 ## Установка
 
@@ -59,6 +62,9 @@ cp .opencode/skills/yandex-metrika-core/metrika_config.example.json ./metrika_co
 
 ```bash
 git clone https://github.com/prikotov/yandex-metrika-search.git .opencode/skills/yandex-metrika-search
+git clone https://github.com/prikotov/yandex-metrika-visitors.git .opencode/skills/yandex-metrika-visitors
+git clone https://github.com/prikotov/yandex-metrika-pages.git .opencode/skills/yandex-metrika-pages
+git clone https://github.com/prikotov/yandex-metrika-traffic.git .opencode/skills/yandex-metrika-traffic
 ```
 
 ## Структура
@@ -68,11 +74,13 @@ your-project/
 ├── metrika_config.json          # Общий конфиг (создаётся вручную в корне проекта)
 ├── yandex_token.json            # Создаётся автоматически при первом запуске
 ├── metrika_reports/             # Создаётся автоматически при запуске отчёта
+│   └── YYYY-MM-DD/              # Папка с отчётами за день
 └── .opencode/skills/
     ├── yandex-metrika-core/     # Библиотека
-    │   ├── MetrikaClient.php
-    │   └── SKILL.md
-    └── yandex-metrika-search/   # Skill для поисковых фраз
+    ├── yandex-metrika-search/   # Поисковые фразы
+    ├── yandex-metrika-visitors/ # Посетители
+    ├── yandex-metrika-pages/    # Страницы
+    └── yandex-metrika-traffic/  # Источники трафика
 ```
 
 ## Безопасность
