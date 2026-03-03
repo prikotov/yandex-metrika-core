@@ -212,7 +212,21 @@ class MetrikaClient
         curl_close($ch);
         
         if ($httpCode !== 200) {
-            throw new Exception("API Error: $response");
+            $errorData = json_decode($response, true);
+            $errors = [];
+            foreach ($errorData['errors'] ?? [] as $err) {
+                $msg = $err['message'] ?? '';
+                $code = $err['error_code'] ?? null;
+                if ($code) {
+                    $errors[] = "$msg (code: $code)";
+                } else {
+                    $errors[] = $msg;
+                }
+            }
+            if (empty($errors)) {
+                $errors[] = $errorData['message'] ?? $response;
+            }
+            throw new Exception("API Error [$httpCode]: " . implode("; ", $errors));
         }
         
         return json_decode($response, true);
