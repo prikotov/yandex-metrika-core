@@ -267,10 +267,16 @@ class MetrikaClient
             mkdir($reportDir, 0755, true);
         }
         
-        $timestamp = date('Y-m-d_H-i-s');
-        $reportPath = $reportDir . '/' . $timestamp;
-        mkdir($reportPath, 0755);
+        $dateDir = $reportDir . '/' . date('Y-m-d');
+        if (!is_dir($dateDir)) {
+            mkdir($dateDir, 0755);
+        }
         
-        return $reportPath;
+        return $dateDir;
+    }
+    
+    public static function getFileTimestamp(): string
+    {
+        return date('Y-m-d_H-i-s');
     }
 }
