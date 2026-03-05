@@ -74,10 +74,7 @@ your-project/
 ├── yandex_metrika_token.json    # Создаётся автоматически при первом запуске
 ├── yandex_metrika_reports/      # Создаётся автоматически при запуске отчёта
 │   └── YYYY-MM-DD/              # Папка с отчётами за день
-│       ├── yandex_metrika_phrases_YYYY-MM-DD_HH-MM-SS.csv/.md     # Поисковые фразы
-│       ├── yandex_metrika_pages_YYYY-MM-DD_HH-MM-SS.csv/.md       # Страницы
-│       ├── yandex_metrika_visitors_YYYY-MM-DD_HH-MM-SS.csv/.md    # Посетители
-│       └── yandex_metrika_traffic_YYYY-MM-DD_HH-MM-SS.csv/.md     # Источники трафика
+│       └── yandex_metrika_*_YYYY-MM-DD_HH-MM-SS.csv/.md  # Файлы отчётов
 └── .opencode/skills/
     ├── yandex-metrika-core/     # Библиотека
     ├── yandex-metrika-search/   # Поисковые фразы
