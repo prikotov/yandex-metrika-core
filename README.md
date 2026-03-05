@@ -45,7 +45,7 @@ git clone https://github.com/prikotov/yandex-metrika-core.git .opencode/skills/y
 ### 4. Создайте конфигурацию
 
 ```bash
-cp .opencode/skills/yandex-metrika-core/metrika_config.example.json ./metrika_config.json
+cp .opencode/skills/yandex-metrika-core/yandex_metrika_config.example.json ./yandex_metrika_config.json
 ```
 
 Заполните:
@@ -70,9 +70,9 @@ git clone https://github.com/prikotov/yandex-metrika-traffic.git .opencode/skill
 
 ```
 your-project/
-├── metrika_config.json          # Общий конфиг (создаётся вручную в корне проекта)
-├── yandex_token.json            # Создаётся автоматически при первом запуске
-├── metrika_reports/             # Создаётся автоматически при запуске отчёта
+├── yandex_metrika_config.json   # Общий конфиг (создаётся вручную в корне проекта)
+├── yandex_metrika_token.json    # Создаётся автоматически при первом запуске
+├── yandex_metrika_reports/      # Создаётся автоматически при запуске отчёта
 │   └── YYYY-MM-DD/              # Папка с отчётами за день
 └── .opencode/skills/
     ├── yandex-metrika-core/     # Библиотека
@@ -87,9 +87,9 @@ your-project/
 MetrikaClient автоматически защищает конфиденциальные данные от случайной публикации в git. При первом запуске он проверяет `.gitignore` и добавляет недостающие записи.
 
 Защищаемые файлы:
-- `metrika_config.json` — OAuth-данные приложения
-- `yandex_token.json` — токен авторизации
-- `metrika_reports/` — папка с отчётами
+- `yandex_metrika_config.json` — OAuth-данные приложения
+- `yandex_metrika_token.json` — токен авторизации
+- `yandex_metrika_reports/` — папка с отчётами
 
 ## Создание нового skill
 

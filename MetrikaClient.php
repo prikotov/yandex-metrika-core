@@ -16,16 +16,16 @@ class MetrikaClient
         $this->clientId = $clientId;
         $this->clientSecret = $clientSecret;
         $this->counterId = $counterId;
-        $this->tokenFile = $tokenFile ?? getcwd() . '/yandex_token.json';
+        $this->tokenFile = $tokenFile ?? getcwd() . '/yandex_metrika_token.json';
     }
     
     public static function checkGitignore(): void
     {
         $gitignoreFile = getcwd() . '/.gitignore';
         $requiredEntries = [
-            'metrika_config.json',
-            'yandex_token.json',
-            'metrika_reports/'
+            'yandex_metrika_config.json',
+            'yandex_metrika_token.json',
+            'yandex_metrika_reports/'
         ];
         
         if (!file_exists($gitignoreFile)) {
@@ -55,7 +55,7 @@ class MetrikaClient
     
     public static function loadConfig(): array
     {
-        $configFile = getcwd() . '/metrika_config.json';
+        $configFile = getcwd() . '/yandex_metrika_config.json';
         
         if (!file_exists($configFile)) {
             file_put_contents($configFile, json_encode([
@@ -276,7 +276,7 @@ class MetrikaClient
     
     public static function createReportDir(): string
     {
-        $reportDir = getcwd() . '/metrika_reports';
+        $reportDir = getcwd() . '/yandex_metrika_reports';
         if (!is_dir($reportDir)) {
             mkdir($reportDir, 0755, true);
         }
