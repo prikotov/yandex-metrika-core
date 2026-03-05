@@ -9,13 +9,15 @@ class MetrikaClient
     private string $clientId;
     private string $clientSecret;
     private int $counterId;
+    private ?string $siteName;
     private string $tokenFile;
     
-    public function __construct(string $clientId, string $clientSecret, int $counterId, ?string $tokenFile = null)
+    public function __construct(string $clientId, string $clientSecret, int $counterId, ?string $siteName = null, ?string $tokenFile = null)
     {
         $this->clientId = $clientId;
         $this->clientSecret = $clientSecret;
         $this->counterId = $counterId;
+        $this->siteName = $siteName;
         $this->tokenFile = $tokenFile ?? getcwd() . '/yandex_metrika_token.json';
     }
     
@@ -61,14 +63,19 @@ class MetrikaClient
             file_put_contents($configFile, json_encode([
                 'client_id' => 'ВАШ_CLIENT_ID',
                 'client_secret' => 'ВАШ_CLIENT_SECRET',
-                'counter_id' => 0
+                'counters' => [
+                    'сайт1.ru' => 12345678,
+                    'сайт2.ru' => 87654321
+                ],
+                'default_counter' => 'сайт1.ru'
             ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
             
             echo "\n  Создан файл конфигурации: $configFile\n";
             echo "  Заполните в нём:\n";
             echo "    - client_id: ID приложения Яндекс.OAuth\n";
             echo "    - client_secret: Пароль приложения\n";
-            echo "    - counter_id: Номер счётчика Метрики\n\n";
+            echo "    - counters: список сайтов с их counter_id\n";
+            echo "    - default_counter: имя сайта по умолчанию\n\n";
             echo "  Как создать OAuth-приложение:\n";
             echo "  1. https://oauth.yandex.ru/client/new\n";
             echo "  2. Платформа: Веб-сервисы\n";
@@ -79,12 +86,47 @@ class MetrikaClient
         
         $config = json_decode(file_get_contents($configFile), true);
         
-        if ($config['client_id'] === 'ВАШ_CLIENT_ID' || $config['counter_id'] === 0) {
+        if ($config['client_id'] === 'ВАШ_CLIENT_ID') {
             echo "\n  Заполните конфигурацию в файле: $configFile\n";
             exit(1);
         }
         
         return $config;
+    }
+    
+    public static function getCounterIdFromConfig(array $config, ?string $siteName = null): int
+    {
+        if (isset($config['counters'])) {
+            if ($siteName === null) {
+                $siteName = $config['default_counter'] ?? array_key_first($config['counters']);
+            }
+            
+            if (!isset($config['counters'][$siteName])) {
+                $available = implode(', ', array_keys($config['counters']));
+                throw new Exception("Сайт '$siteName' не найден. Доступные: $available");
+            }
+            
+            return (int)$config['counters'][$siteName];
+        }
+        
+        if (isset($config['counter_id'])) {
+            return (int)$config['counter_id'];
+        }
+        
+        throw new Exception("В конфигурации не указан counter_id или counters");
+    }
+    
+    public static function getAvailableSites(array $config): array
+    {
+        if (isset($config['counters'])) {
+            return array_keys($config['counters']);
+        }
+        return [];
+    }
+    
+    public function getSiteName(): ?string
+    {
+        return $this->siteName;
     }
     
     private function getAuthUrl(): string

@@ -1,5 +1,9 @@
 {
     "client_id": "ваш_client_id",
     "client_secret": "ваш_client_secret",
-    "counter_id": 12345678
+    "counters": {
+        "prikotov.pro": 100353099,
+        "task.ai-aid.pro": 104044528
+    },
+    "default_counter": "prikotov.pro"
 }

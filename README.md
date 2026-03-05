@@ -53,9 +53,15 @@ cp .opencode/skills/yandex-metrika-core/yandex_metrika_config.example.json ./yan
 {
     "client_id": "ваш_client_id",
     "client_secret": "ваш_client_secret",
-    "counter_id": 12345678
+    "counters": {
+        "site1.ru": 12345678,
+        "site2.ru": 87654321
+    },
+    "default_counter": "site1.ru"
 }
 ```
+
+Параметр `default_counter` определяет сайт, который используется если не указан `--site`.
 
 ### 5. Установите нужные skills
 
@@ -124,14 +130,18 @@ require_once __DIR__ . '/../yandex-metrika-core/MetrikaClient.php';
 MetrikaClient::checkGitignore();
 $config = MetrikaClient::loadConfig();
 
-// 2. Создание клиента
+// 2. Получение counter_id (можно указать сайт или использовать default)
+$counterId = MetrikaClient::getCounterIdFromConfig($config, 'site1.ru');
+
+// 3. Создание клиента
 $client = new MetrikaClient(
     $config['client_id'],
     $config['client_secret'],
-    $config['counter_id']
+    $counterId,
+    'site1.ru'  // опционально, для вывода в логах
 );
 
-// 3. Запрос к API Метрики
+// 4. Запрос к API Метрики
 // Документация параметров: https://yandex.ru/dev/metrika/doc/api/createdownstat/createdownstat.html
 $data = $client->request([
     'ids' => $client->getCounterId(),
@@ -142,7 +152,7 @@ $data = $client->request([
     'limit' => 100
 ]);
 
-// 4. Преобразование ответа в плоский массив
+// 5. Преобразование ответа в плоский массив
 $rows = [];
 foreach ($data['data'] as $item) {
     $rows[] = [
@@ -152,10 +162,22 @@ foreach ($data['data'] as $item) {
     ];
 }
 
-// 5. Сохранение отчёта в CSV и Markdown
+// 6. Сохранение отчёта в CSV и Markdown
 $reportDir = MetrikaClient::createReportDir();
 MetrikaClient::saveCsv($rows, "$reportDir/report.csv");
 MetrikaClient::saveMarkdown($rows, "$reportDir/report.md", 'Поисковые фразы', '2026-01-01', '2026-02-28');
+```
+
+### Выбор сайта
+
+Все skills поддерживают параметр `--site`:
+
+```bash
+# Использовать default_counter из конфига
+php .opencode/skills/yandex-metrika-search/metrika.php
+
+# Указать конкретный сайт
+php .opencode/skills/yandex-metrika-search/metrika.php --site task.ai-aid.pro
 ```
 
 ## Требования
