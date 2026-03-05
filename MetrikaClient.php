@@ -96,32 +96,21 @@ class MetrikaClient
     
     public static function getCounterIdFromConfig(array $config, ?string $siteName = null): int
     {
-        if (isset($config['counters'])) {
-            if ($siteName === null) {
-                $siteName = $config['default_counter'] ?? array_key_first($config['counters']);
-            }
-            
-            if (!isset($config['counters'][$siteName])) {
-                $available = implode(', ', array_keys($config['counters']));
-                throw new Exception("Сайт '$siteName' не найден. Доступные: $available");
-            }
-            
-            return (int)$config['counters'][$siteName];
+        if ($siteName === null) {
+            $siteName = $config['default_counter'] ?? array_key_first($config['counters']);
         }
         
-        if (isset($config['counter_id'])) {
-            return (int)$config['counter_id'];
+        if (!isset($config['counters'][$siteName])) {
+            $available = implode(', ', array_keys($config['counters']));
+            throw new Exception("Сайт '$siteName' не найден. Доступные: $available");
         }
         
-        throw new Exception("В конфигурации не указан counter_id или counters");
+        return (int)$config['counters'][$siteName];
     }
     
     public static function getAvailableSites(array $config): array
     {
-        if (isset($config['counters'])) {
-            return array_keys($config['counters']);
-        }
-        return [];
+        return array_keys($config['counters']);
     }
     
     public function getSiteName(): ?string
